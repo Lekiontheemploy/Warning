@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Warning </title>
+	<meta charset="untf-8">
+	<h1 id="text"></h1>
+
+<!-- Khung chứa phần chữ giới thiệu nút -->
+<div id="buttonsContainer" style="display:none; margin-top:20px;">
+    <div id="buttonsText"></div>
+</div>
+
+<script>
+    // --- PHẦN 1: Văn bản nhiều dòng ---
+    const text = `Thế là bạn quyết định đi cùng tôi à?
+Nhắc lại đây có thể là một chuyến đi dài
+Nếu bạn đã quyết định thì...
+Bạn có muốn tham gia cùng tôi trong một chuyến đi dài không?
+(Nếu bạn muốn đi thì hãy lấy tờ gợi ý tôi để lại trong học bàn, nó có chữ F bên ngoài)`;
+
+    let i = 0;
+
+    function typeEffect() {
+        if (i < text.length) {
+            let char = text.charAt(i);
+
+            if (char === "\n") {
+                document.getElementById("text").innerHTML += "<br>";
+            } else {
+                document.getElementById("text").innerHTML += char;
+            }
+
+            i++;
+            setTimeout(typeEffect, 40);
+        } else {
+            showButtonsText();
+        }
+    }
+
+    typeEffect();
+
+
+
+    // --- PHẦN 2: Chữ giới thiệu cho nút ---
+    const btnContent = ``;
+
+    let j = 0;
+
+    function showButtonsText() {
+        document.getElementById("buttonsContainer").style.display = "block";
+        typeButtonsText();
+    }
+
+    function typeButtonsText() {
+        if (j < btnContent.length) {
+            let char = btnContent.charAt(j);
+
+            if (char === "\n") {
+                document.getElementById("buttonsText").innerHTML += "<br>";
+            } else {
+                document.getElementById("buttonsText").innerHTML += char;
+            }
+
+            j++;
+            setTimeout(typeButtonsText, 40);
+        } else {
+            showButtonsReal();
+        }
+    }
+
+
+
+    // --- PHẦN 3: Nút thật, mỗi nút mở trang khác ---
+    function showButtonsReal() {
+        const container = document.getElementById("buttonsContainer");
+
+        const btn1 = document.createElement("button");
+        btn1.innerText = "Yes";
+        btn1.style.marginRight = "10px";
+        btn1.onclick = function() {
+            window.location.href = "https://lekiontheemploy.github.io/Someinfo/firstarg.html"; 
+        };
+
+        const btn2 = document.createElement("button");
+        btn2.innerText = "No";
+        btn2.onclick = function() {
+            window.location.href = "file:///C:/Users/Tien%20Phat/Desktop/noel.html";
+        };
+
+        container.appendChild(btn1);
+        container.appendChild(btn2);
+    }
+</script>
+
+
+</head>
+<body>
+</body>
+</html>
